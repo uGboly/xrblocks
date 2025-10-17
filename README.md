@@ -2,7 +2,7 @@
 
 [![NPM Package](https://img.shields.io/npm/v/xrblocks)](https://www.npmjs.com/package/xrblocks)
 [![Build Size](https://badgen.net/bundlephobia/minzip/xrblocks)](https://bundlephobia.com/result?p=xrblocks)
-[![NPM Downloads](https://img.shields.io/npm/dw/xrblocks)](https://www.npmtrends.com/xrblocks)
+![jsDelivr hits (GitHub)](https://img.shields.io/jsdelivr/gh/hw/google/xrblocks)
 
 #### JavaScript library for rapid XR and AI prototyping
 
