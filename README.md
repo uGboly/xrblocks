@@ -145,7 +145,14 @@ npm ci
 
 # Build xrblocks.js.
 npm run build
+
+# After making changes, check ESLint and run Prettier
+npm run lint # ESLint check
+npm run format # Prettier format
 ```
+
+XR Blocks uses ESLint for linting and Prettier for formatting.
+If coding in VSCode, make sure to install the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and the [Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode). Then set Prettier as your default formatter.
 
 This is not an officially supported Google product, but will be actively
 maintained by the XR Labs team and external collaborators. This project is not
