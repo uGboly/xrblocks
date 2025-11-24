@@ -15,6 +15,9 @@ let EndSensitivity: typeof GoogleGenAITypes.EndSensitivity | undefined;
 let StartSensitivity: typeof GoogleGenAITypes.StartSensitivity | undefined;
 let Modality: typeof GoogleGenAITypes.Modality | undefined;
 
+// Define the Proxy URL
+const PROXY_BASE_URL = 'https://dev.ugboly.com:3005';
+
 // --- Attempt Dynamic Import ---
 async function loadGoogleGenAIModule() {
   if (GoogleGenAI) {
@@ -74,7 +77,13 @@ export class Gemini extends BaseAIModel {
       return false;
     }
     if (!this.inited) {
-      this.ai = new GoogleGenAI({apiKey: this.options.apiKey});
+      // REFACTORED: Connect to the proxy server instead of Google directly.
+      // We pass a placeholder API key because the proxy injects the real one.
+      // We set the `baseUrl` to our custom proxy.
+      this.ai = new GoogleGenAI({
+        apiKey: 'proxy-handled', // The proxy at port 3005 will inject the real key from key.json
+        baseUrl: PROXY_BASE_URL 
+      });
       this.inited = true;
     }
     return true;
@@ -111,7 +120,7 @@ export class Gemini extends BaseAIModel {
     const callbacks: GoogleGenAITypes.LiveCallbacks = {
       onopen: () => {
         this.isLiveMode = true;
-        console.log('🔓 Live session opened.');
+        console.log('🔓 Live session opened via Proxy.');
         if (this.liveCallbacks?.onopen) {
           this.liveCallbacks.onopen();
         }
@@ -146,7 +155,7 @@ export class Gemini extends BaseAIModel {
         callbacks: callbacks,
         config: defaultConfig,
       };
-      console.log('Connecting with params:', connectParams);
+      console.log('Connecting to proxy with params:', connectParams);
       this.liveSession = await this.ai!.live.connect(connectParams);
       return this.liveSession;
     } catch (error) {
