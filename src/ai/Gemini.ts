@@ -80,10 +80,12 @@ export class Gemini extends BaseAIModel {
       // REFACTORED: Connect to the proxy server instead of Google directly.
       // We pass a placeholder API key because the proxy injects the real one.
       // We set the `baseUrl` to our custom proxy.
-      this.ai = new GoogleGenAI({
-        apiKey: 'proxy-handled', // The proxy at port 3005 will inject the real key from key.json
-        baseUrl: PROXY_BASE_URL 
-      });
+      const clientOptions: any = {
+        apiKey: 'proxy-handled',
+        baseUrl: PROXY_BASE_URL
+      };
+
+      this.ai = new GoogleGenAI(clientOptions)
       this.inited = true;
     }
     return true;

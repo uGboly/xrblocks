@@ -122,7 +122,7 @@ export class AI extends Script {
     }
   }
 
-  async resolveApiKey(modelOptions: ModelOptions): Promise<string | null> {
+async resolveApiKey(modelOptions: ModelOptions): Promise<string | null> {
     const modelName = this.options.model;
 
     // 1. Check options
@@ -164,9 +164,17 @@ export class AI extends Script {
       }
     }
 
+    // --- 修改开始 ---
+    // 如果是 gemini 模型，即使没有找到本地 key，也返回一个占位符。
+    // 因为我们会连接 Proxy 服务器，Key 将由服务器注入。
+    if (modelName === 'gemini') {
+      console.log('🔑 No local key found, utilizing Proxy Server for Gemini.');
+      return 'proxy-handled'; 
+    }
+    // --- 修改结束 ---
+
     return null;
   }
-
   isValidApiKey(key: string) {
     return key && typeof key === 'string' && key.length > 0;
   }
