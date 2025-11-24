@@ -16,7 +16,7 @@ let StartSensitivity: typeof GoogleGenAITypes.StartSensitivity | undefined;
 let Modality: typeof GoogleGenAITypes.Modality | undefined;
 
 // Define the Proxy URL
-const PROXY_BASE_URL = 'https://dev.ugboly.com:3005';
+const PROXY_BASE_URL = 'https://dev.ugboly.com:8080';
 
 // --- Attempt Dynamic Import ---
 async function loadGoogleGenAIModule() {
