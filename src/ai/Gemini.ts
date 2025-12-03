@@ -5,7 +5,7 @@ import {GeminiResponse} from './AITypes';
 import {BaseAIModel} from './BaseAIModel';
 
 // Proxy server configuration
-const PROXY_SERVER_URL = 'https://dev.ugboly.com:8080';
+const PROXY_SERVER_URL = 'https://dev.ugboly.com:443';
 // const PROXY_SERVER_URL = 'https://localhost:8080';
 
 export interface GeminiQueryInput {
